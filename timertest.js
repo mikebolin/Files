@@ -1,26 +1,2 @@
-'use strict';
-(function () {
-class TimerTest {
-	constructor() {this._hours = '';this._minutes = '';this._seconds = ''; }
-	get hours() { return this._hours; }
-	get minutes() { return this._minutes; }
-	get seconds() { return this._seconds; }
-	set hours(val) { this._hours = val; }
-	set minutes(val) { this._minutes = val; }
-	set seconds(val) { this._seconds = val; }
-	getDate(timestamp) {let date = new Date(timestamp);let year = date.getUTCFullYear();let month = date.getUTCMonth() + 1; let day = date.getUTCDate();let hours = date.getUTCHours();let minutes = date.getUTCMinutes();let seconds = date.getUTCSeconds();month = (month < 10) ? '0' + month : month;day = (day < 10) ? '0' + day : day;hours = (hours < 10) ? '0' + hours : hours;minutes = (minutes < 10) ? '0' + minutes : minutes;seconds = (seconds < 10) ? '0' + seconds: seconds;return new Date(year, (month-1), day, hours, minutes, seconds); }
-	getNowUTC(){let date = new Date();let now_utc =  Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()); return new Date(now_utc);}
+class TimerTest{constructor(){this._hours="",this._minutes="",this._seconds=""}get hours(){return this._hours}get minutes(){return this._minutes}get seconds(){return this._seconds}set hours(e){this._hours=e}set minutes(e){this._minutes=e}set seconds(e){this._seconds=e}begin(e,t,n,s,o,r,u){console.log(new Date(e,t,n,s,o,r,u));let i=new Date(e,t,n,s,o,r,u).getTime();var h=setInterval(function(){let e=function(e){let t=new Date(e),n=t.getUTCFullYear(),s=t.getUTCMonth()+1,o=t.getUTCDate(),r=t.getUTCHours(),u=t.getUTCMinutes(),i=t.getUTCSeconds();return s=s<10?"0"+s:s,o=o<10?"0"+o:o,r=r<10?"0"+r:r,u=u<10?"0"+u:u,i=i<10?"0"+i:i,new Date(n,s-1,o,r,u,i)}(function(){let e=new Date,t=Date.UTC(e.getUTCFullYear(),e.getUTCMonth(),e.getUTCDate(),e.getUTCHours(),e.getUTCMinutes(),e.getUTCSeconds());return new Date(t)}()),t=i-e,n=Math.floor(t%864e5/36e5)+24*Math.floor(t/864e5),s=Math.floor(t%36e5/6e4),o=Math.floor(t%6e4/1e3);document.getElementById("demo").innerHTML=n+"h "+s+"m "+o+"s ",t<0&&(clearInterval(h),document.getElementById("demo").innerHTML="EXPIRED")},1e3)}}
 	
-	startTimer(year, month, day, hour, minutes, seconds, milliseconds) {
-	let nowUTC = this.getDate(this.getNowUTC());
-	let countDownDate = new Date(year, month, day, hour, minutes, seconds, milliseconds).getTime(); 
-
-	console.log('nowUTC', nowUTC);
-	console.log('countDownDate', countDownDate);
-	}
-	
-	}
-
-	var TimerTest = new TimerTest();
-	TimerTest.startTimer();
-})();
